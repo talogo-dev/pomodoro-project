@@ -1,11 +1,10 @@
-import { useState } from 'react'
 
 function App() {
 
   return (
     <>
-      <header>
-        <h1 class="">Pomodoro Timer</h1>
+      <header className="flex flex-col mt-5">
+        <h1 className="text-center text-4xl">Pomodoro Timer</h1>
       </header>
       {/* Secção para botoes e afins */}
       <section>
