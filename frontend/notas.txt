@@ -1,2 +1,5 @@
 site do icone escolhido:
 https://www.flaticon.com/free-icon/pomodoro-technique_12238205
+
+figma: 
+https://www.figma.com/design/VLeSS3UOxJ7WA0CgukH4ct/Pomodoro?node-id=0-1&p=f&t=cmFOBn7X3do9aGuJ-0

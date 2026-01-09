@@ -1,5 +1,19 @@
-@import "tailwindcss";
 /*
  ? Fonte Google
 */
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+@import "tailwindcss";
+
+@theme{
+    --color-gray-green: #474935;
+    --color-light-green: #B5FED9;
+    --color-darker-green: #6B8882;
+}
+
+*{
+    font-family: "Noto Sans", sans-serif;
+}
+
+.debug{
+    border: solid 1px red;
+}

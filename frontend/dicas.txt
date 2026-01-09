@@ -1,0 +1,2 @@
+- Ao usar o useState, não posso simplesmente usar onClick(setState("estado")), porque senão vai renderizar sempre e entra em loop.
+para corrigir basta colocar onClick(() => setState("estado")), assim apenas executa o setState quando for clicado.
