@@ -6,7 +6,7 @@ import App from './App.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <main className="bg-gray-green h-screen">
+    <main className="bg-gray-green h-screen select-none">
       <App />
     </main>
   </StrictMode>,
