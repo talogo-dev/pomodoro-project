@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { RotateCcw, Plus } from "lucide-react";
 
 import MyTimer from "./components/MyTimer";
 
@@ -8,6 +9,7 @@ function App() {
 
   const [mode, setMode] = useState("focus");
   const [amountTime, setAmountTime] = useState(25*60);
+  
   //
   const selected = "text-light-green cursor-pointer underline";
   const notSelected = "text-light-green cursor-pointer";
@@ -45,7 +47,7 @@ function App() {
         </div>
       </header>
       <main className="flex flex-col justify-center items-center mt-40">
-        <MyTimer expiryTimestamp={time} />
+        <MyTimer expiryTimestamp={time} amountOfTime={amountTime} />
       </main>
     </>
   )
