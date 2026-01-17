@@ -4,20 +4,30 @@ import { useEffect, useState } from 'react';
 import { CirclePlay, CirclePause, RotateCcw, Plus, Settings } from "lucide-react";
 
 import SettingsModal from "./SettingsModal";
+import dingSound from "../assets/sound-effect-ding.mp3";
 
 //* Parâmetros desestruturados
 function MyTimer(props) {
 
   const [play, setPlay] = useState(true);
   const [showModal, setShowModal] = useState(false);
+  const [goNext, setGoNext] = useState(false);
+
+  //? Começa em 1 porque o modo focus está ativo por default
+  const [counter, setCounter] = useState(1);
+  const [countSession, setCountSession] = useState(0);
 
   //* Tempo inicial para aparecer no cronómetro
   const initialTime = new Date();
   initialTime.setSeconds(initialTime.getSeconds() + props.focusSeconds);
 
-  //* Auxiliar variables
+  //* Variáveis auxiliares
   const fiveMinutes = 60 * 5;
   const tenMinutes = 60 * 10;
+  const finishAudio = new Audio(dingSound);
+
+  //* Função para formatar o tempo
+  const formatTime = (time) => String(time).padStart(2, '0');
 
   //* Função auxiliar para calcular os segundos de cada modo
   const calcSeconds = () => {
@@ -43,15 +53,56 @@ function MyTimer(props) {
     pause,
     resume,
     restart,
-
   } = useTimer(
-    //! Modificar isto
     {
-      expiryTimestamp: initialTime, onExpire: () => console.warn('onExpire called'),
-      interval: 20,
-      autoStart: false
+      expiryTimestamp: initialTime, 
+      onExpire: () => {
+        //? Antes de trocar o modo, espera 1 segundo para não parecer estranho
+        setTimeout(nextMode, 1000)
+      },
+      interval: 1000,
+      autoStart: true
     });
+  
+  //* Função para calcular as sessões
+  const nextMode = () => {
 
+    //? Se o contador estiver estiver a 8 (significa que foi 4 "focus"), 
+    //? entra em modo "long-break" e conta uma sessão
+    if(counter == 8)
+    {
+      setGoNext(true);
+      setCounter(0);
+      setCountSession(countSession + 1);
+      props.setModeStatus("long-break");
+    }
+    else
+    {
+      //? Verifica se o modo está no "Focus"
+      if(props.modeStatus == "focus")
+      {
+        setGoNext(true);
+        setCounter(counter + 1);
+        props.setModeStatus("small-break");
+      }
+
+      //? Verifica se o modo está como "small-break"
+      if(props.modeStatus == "small-break")
+      {
+        setGoNext(true);
+        setCounter(counter + 1);
+        props.setModeStatus("focus");
+      }
+
+      //? Verifica se o modo está como "long-break"
+      if(props.modeStatus == "long-break")
+      {
+        props.setModeStatus("focus");
+      }
+    }
+  }
+
+  //* Função para alterar o ícone
   const switchIcon = (state) => {
     setPlay(state)
     if (!state)
@@ -61,14 +112,24 @@ function MyTimer(props) {
   }
 
   useEffect(() => {
-
     //? Quando o modo muda, atualiza os segundos
-    const newTime = calcSeconds();
-    restart(newTime, false);
-    setPlay(true);
-  }, [props.modeStatus, props.focusSeconds, props.smallBreakSeconds, props.longBreakSeconds])
 
-  const formatTime = (time) => String(time).padStart(2, '0');
+    //* Calcula o tempo em segundos
+    const newTime = calcSeconds();
+    //* Se for para trocar de modo reinicia com o tempo do novo modo e começa a correr
+    if(goNext == true)
+    {
+      finishAudio.play();
+      restart(newTime, true);
+      setPlay(false);
+      setGoNext(false);
+    }else
+    {
+      //* Senão apenas atribui o novo tempo
+      restart(newTime, false);
+      setPlay(true);
+    }
+  }, [props.modeStatus, props.focusSeconds, props.smallBreakSeconds, props.longBreakSeconds])
 
   return (
     <div className="flex flex-col items-center">
@@ -121,6 +182,12 @@ function MyTimer(props) {
         <Settings size={30} />
         Settings
       </button>
+      
+      <p className="text-3xl text-light-green mt-10">Total Sessions: {countSession}</p>
+      <button
+        className="bg-darker-green py-2 px-5 text-lg cursor-pointer mt-2 rounded-lg hover:bg-hover-darker-green"
+        onClick={() => setCountSession(0)}
+      >Reset</button>
 
       <SettingsModal
         isOpen={showModal}

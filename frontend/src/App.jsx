@@ -7,7 +7,7 @@ function App() {
   //* Settings para o tempo de cada modo
   const [focusTime, setFocusTime] = useState(25 * 60);
   const [smallBreakTime, setSmallBreakTime] = useState(5 * 60);
-  const [longBreakTime, setLongBreakTime] = useState(10 * 60);
+  const [longBreakTime, setLongBreakTime] = useState(15 * 60);
 
   //* Modo atual
   const [mode, setMode] = useState("focus");
@@ -26,11 +26,12 @@ function App() {
           <span className={mode == "long-break" ? selected : notSelected} onClick={() => setMode("long-break")}>long break</span>
         </div>
       </header>
-      <main className="flex flex-col justify-center items-center mt-40">
+      <main className="flex flex-col justify-center items-center mt-30">
         <MyTimer
 
           //? Modo atual
           modeStatus={mode}
+          setModeStatus={setMode}
 
           //? Valores
           focusSeconds={focusTime}
