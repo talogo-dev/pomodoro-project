@@ -139,7 +139,7 @@ function MyTimer(props) {
         (<button><CirclePause size={150} color="black" strokeWidth={1} className="cursor-pointer" onClick={() => switchIcon(true)} /></button>)}
       <span className="text-light-green mt-10 text-4xl font-semibold">{formatTime(hours)}:{formatTime(minutes)}:{formatTime(seconds)}</span>
 
-      <div className="flex flex-row gap-10 mt-10">
+      <div className="flex md:flex-row flex-col md:gap-10 gap-5 mt-10">
         <button
           className="flex flex-row bg-darker-green py-5 px-8 text-2xl gap-2 cursor-pointer rounded-lg hover:bg-hover-darker-green"
           onClick={() => {
@@ -153,7 +153,7 @@ function MyTimer(props) {
           <Plus size={30} />
           5:00
         </button>
-        <button>
+        <button className="flex justify-center">
           <RotateCcw size={60} className="cursor-pointer" onClick={() => {
             //? Reinicia o tempo selecionado e muda o ícone para "Play"
             const time = calcSeconds();
@@ -185,7 +185,7 @@ function MyTimer(props) {
       
       <p className="text-3xl text-light-green mt-10">Total Sessions: {countSession}</p>
       <button
-        className="bg-darker-green py-2 px-5 text-lg cursor-pointer mt-2 rounded-lg hover:bg-hover-darker-green"
+        className="bg-darker-green py-2 px-5 text-lg cursor-pointer mt-2 mb-5 rounded-lg hover:bg-hover-darker-green"
         onClick={() => setCountSession(0)}
       >Reset</button>
 

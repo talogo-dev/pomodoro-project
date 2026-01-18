@@ -24,7 +24,7 @@ function SettingsModal(props) {
     return (
         <>
             <div
-                className={`hs-overlay size-full fixed top-0 start-0 z-80 overflow-x-hidden overflow-y-auto bg-black/50 ${props.isOpen ? 'flex pointer-events-auto' : 'hidden pointer-events-none'}`}
+                className={`justify-center hs-overlay size-full fixed top-0 start-0 z-80 overflow-x-hidden overflow-y-auto bg-black/50 ${props.isOpen ? 'flex pointer-events-auto' : 'hidden pointer-events-none'}`}
                 role="dialog"
                 tabIndex="-1"
                 aria-labelledby="modal-label"
