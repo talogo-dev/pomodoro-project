@@ -3,12 +3,10 @@ import { X } from 'lucide-react';
 
 function SettingsModal(props) {
 
-    //* Guarda os valores dos inputs em minutos
     const [focusTime, setFocusTime] = useState(props.focusTime / 60);
     const [smallBreakTime, setSmallBreakTime] = useState(props.smallBreakTime / 60);
     const [longBreakTime, setLongBreakTime] = useState(props.longBreakTime / 60);
 
-    //? Atualiza o tempo de cada modo conforme o valor do input em segundos
     useEffect(() => {
         props.switchFocusTime(focusTime * 60);
     }, [focusTime])

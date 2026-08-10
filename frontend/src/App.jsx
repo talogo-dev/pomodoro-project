@@ -1,18 +1,13 @@
 import { useEffect, useState } from "react";
-
 import MyTimer from "./components/MyTimer";
 
 function App() {
 
-  //* Settings para o tempo de cada modo
   const [focusTime, setFocusTime] = useState(25 * 60);
   const [smallBreakTime, setSmallBreakTime] = useState(5 * 60);
   const [longBreakTime, setLongBreakTime] = useState(15 * 60);
-
-  //* Modo atual
   const [mode, setMode] = useState("focus");
 
-  //* Estilos tabs
   const selected = "text-light-green cursor-pointer underline";
   const notSelected = "text-light-green cursor-pointer";
 
@@ -28,17 +23,11 @@ function App() {
       </header>
       <main className="flex flex-col justify-center items-center mt-30">
         <MyTimer
-
-          //? Modo atual
           modeStatus={mode}
           setModeStatus={setMode}
-
-          //? Valores
           focusSeconds={focusTime}
           smallBreakSeconds={smallBreakTime}
           longBreakSeconds={longBreakTime}
-
-          //? Funções para alterar os valores
           changeFocusTime={setFocusTime}
           changeSmallBreakTime={setSmallBreakTime}
           changeLongBreakTime={setLongBreakTime} />
@@ -47,4 +36,4 @@ function App() {
   )
 }
 
-export default App
+export default App;
