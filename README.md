@@ -2,7 +2,6 @@
 
 ![Status do Projeto](https://img.shields.io/badge/Status-Concluído-success)
 ![Tecnologias](https://img.shields.io/badge/Tecnologias-[React_/_JS]-blue)
-![Licença](https://img.shields.io/badge/Licença-MIT-green)
 
 > Uma aplicação interativa e simples de produtividade baseada na Técnica Pomodoro. Desenvolvida como resolução do desafio [roadmap.sh Pomodoro Timer project](https://roadmap.sh/projects/pomodoro-timer).
 
@@ -11,6 +10,8 @@
 Este projeto é um temporizador web customizável concebido para ajudar a gerir o tempo de forma eficiente utilizando a Técnica Pomodoro. Alterna entre sessões de trabalho focado e pausas curtas/longas, promovendo a produtividade e evitando o desgaste mental.
 
 Esta aplicação demonstra a aplicação prática de gestão de estado, lógica de intervalos de tempo e design responsivo.
+
+O esquema de cores foi gerado aleatoriamente utilizando o website [Coolors](https://coolors.co/423b0b-b5fed9-98cbb4-7ba098-474935).
 
 ### ✨ Principais Funcionalidades
 
